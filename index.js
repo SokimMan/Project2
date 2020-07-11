@@ -1,3 +1,7 @@
+const express = require('express')
+const path = require('path')
+const PORT = process.env.PORT || 5000
+
 const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -5,9 +9,6 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 });
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
 
 express()
   .use(express.static(path.join(__dirname, 'public')))

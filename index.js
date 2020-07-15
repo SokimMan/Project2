@@ -40,7 +40,7 @@ express()
   .get('/cool', (req, res) => res.send(cool()))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
-  	function insertToDatabase(externalID, firstName, lastName, city) 
+  	async function insertToDatabase(externalID, firstName, lastName, city) 
   	{
   		// 'INSERT INTO sf VALUES ('externalID', 'firstName', 'lastName', 'city')
   		command = 'INSERT INTO sf VALUES (\'' + externalID + '\', ' + '\'' + firstName + '\', ' + '\''  + lastName + '\', ' + '\''  + city + '\');';

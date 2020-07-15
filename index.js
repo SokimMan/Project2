@@ -1,9 +1,10 @@
+//'use strict';
 const cool = require('cool-ascii-faces');
 const express = require('express');
 const path = require('path');
 const PORT = process.env.PORT || 5000;
 const connectionString = process.env.DATABASE_URL || "postgres://ywtcjxlcityric:c361ad6a0fa2a243560478dbcef8c5bb5aad5acefa50e67cf9c43a993a74c270@ec2-54-234-28-165.compute-1.amazonaws.com:5432/d5s7bcbtu1lj5c?ssl=true";
-
+const data = require('postgres://ywtcjxlcityric:c361ad6a0fa2a243560478dbcef8c5bb5aad5acefa50e67cf9c43a993a74c270@ec2-54-234-28-165.compute-1.amazonaws.com:5432/d5s7bcbtu1lj5c?ssl=true');
 
 const { Pool } = require('pg');
 /*
@@ -35,9 +36,27 @@ express()
     }
   })
 
-  .get('/newUser', createNewUser)
+  .get('/data', function(request, response))
+  {
+  	let person = request.query.person;
+  	// If there is a person, and the raw JSON data has such a key, return the
+  	// associated data.
+  	// If there is no person, or the raw JSON data has no such key, return
+  	// an error object.
+  	if (person !== undefined && data.hasOwnProperty(person)) {
+    	response.json(data[person]);
+  	} else {
+    	response.json(data['error']);
+  	}
 
+  	// End the response.
+  	response.end();
+  }
+
+  .get('/newUser', createNewUser)
   .get('/cool', (req, res) => res.send(cool()))
+
+
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 

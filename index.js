@@ -109,6 +109,7 @@ express()
   			command = 'SELECT * FROM sf;';
   			const client = await pool.connect();
   			const result = await client.query('SELECT * FROM sf');
+  			console.log("Found result: " + JSON.stringify(result.rows));
       		const results = { 'results': (result) ? result.rows : null};
       		client.release();
       	}
@@ -129,7 +130,7 @@ express()
 	const city = request.query.city;
 
 	insertResult = insertToDatabase(externalID, firstName, lastName, city);
-	selectResult = viewDatabase();
+	//selectResult = viewDatabase();
 
 
     // Set up a JSON object of the values we want to pass along to the EJS result page
@@ -153,7 +154,7 @@ function getPerson(request, response) {
 		// The job here is just to send it back.
 
 		// Make sure we got a row with the person, then prepare JSON to send back
-		if (error || result == null || result.length != 1) {
+		if (error || result == null) { // result.length != 1) {
 			response.status(500).json({success: false, data: error});
 		} else {
 			const person = result[0];
@@ -170,7 +171,7 @@ function getPersonFromDb(id, callback) {
 
 	// Set up the SQL that we will use for our query. Note that we can make
 	// use of parameter placeholders just like with PHP's PDO.
-	const sql = "SELECT * FROM sf WHERE external_ID ='" + id + "';";
+	const sql = "SELECT * FROM sf WHERE external_ID = $1::int" //'" + id + "';";
 
 	// We now set up an array of all the parameters we will pass to fill the
 	// placeholder spots we left in the query.

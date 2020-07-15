@@ -20,10 +20,12 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
+  
+  // Dev Path to see DB post
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect();
-      const result = await client.query('SELECT * FROM test_table');
+      const result = await client.query('SELECT * FROM sf');
       const results = { 'results': (result) ? result.rows : null};
       res.render('pages/db', results );
       client.release();
@@ -32,5 +34,45 @@ express()
       res.send("Error " + err);
     }
   })
+
+  .get('/newUser', createNewUser)
+
   .get('/cool', (req, res) => res.send(cool()))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+  	function insertToDatabase(externalID, firstName, lastName, city) 
+  	{
+  		// 'INSERT INTO sf VALUES ('externalID', 'firstName', 'lastName', 'city')
+  		command = 'INSERT INTO sf VALUES (\'' + externalID + '\', ' + '\'' + firstName + '\', ' + '\''  + lastName + '\', ' + '\''  + city + '\');';
+  		console.log('The db command: ' + command); 
+  		
+  		try 
+  		{
+      		const client = await pool.connect();
+      		const result = await client.query(command);
+      		client.release();
+    	}	 	
+    	catch (err) 
+    	{
+      		console.error(err);
+      		res.send("Error " + err);
+    	}
+
+  	}
+
+    // Connects with our new user form submission
+    function createNewUser(request, response) {
+
+    const externalID = request.query.externalID;
+	const firstName = request.query.firstName;
+	const lastName = request.query.lastName;
+	const city = request.query.city;
+
+	insertResult = insertToDatabase(externalID, firstName, lastName, city);
+
+    // Set up a JSON object of the values we want to pass along to the EJS result page
+	const params = {insertResult: insertResult, externalID: externalID, firstName: firstName, lastName: lastName, city: city};
+
+	// Render the response, using the EJS page "result.ejs" in the pages directory
+	response.render('pages/result', params);
+    }

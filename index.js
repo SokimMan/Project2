@@ -157,7 +157,7 @@ function getPerson(request, response) {
 		if (error || result == null) { // result.length != 1) {
 			response.status(500).json({success: false, data: error});
 		} else {
-			const person = result[0];
+			const person = result;//[0];
 			response.status(200).json(person);
 		}
 	});

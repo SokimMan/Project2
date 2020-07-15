@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const PORT = process.env.PORT || 5000;
 const connectionString = process.env.DATABASE_URL || "postgres://ywtcjxlcityric:c361ad6a0fa2a243560478dbcef8c5bb5aad5acefa50e67cf9c43a993a74c270@ec2-54-234-28-165.compute-1.amazonaws.com:5432/d5s7bcbtu1lj5c?ssl=true";
-const data = require('postgres://ywtcjxlcityric:c361ad6a0fa2a243560478dbcef8c5bb5aad5acefa50e67cf9c43a993a74c270@ec2-54-234-28-165.compute-1.amazonaws.com:5432/d5s7bcbtu1lj5c?ssl=true');
+//const data = require('postgres://ywtcjxlcityric:c361ad6a0fa2a243560478dbcef8c5bb5aad5acefa50e67cf9c43a993a74c270@ec2-54-234-28-165.compute-1.amazonaws.com:5432/d5s7bcbtu1lj5c?ssl=true');
 
 const { Pool } = require('pg');
 /*
@@ -36,8 +36,9 @@ express()
     }
   })
 
-  .get('/data', function(request, response)
+  .get('/data', async (request, response) =>
   {
+  	/*
   	let person = request.query.person;
   	// If there is a person, and the raw JSON data has such a key, return the
   	// associated data.
@@ -51,6 +52,19 @@ express()
 
   	// End the response.
   	response.end();
+  	*/
+
+  	 try {
+      const client = await pool.connect();
+      const result = await client.query('SELECT * FROM sf WHERE externalID=\'' + request.query.person + '\';');
+      } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+
+    response.json(result);
+    response.end();
+
   })
 
   .get('/newUser', createNewUser)

@@ -143,7 +143,7 @@ express()
 // it expects to have an id on the query string, such as: http://localhost:5000/getPerson?id=1
 function getPerson(request, response) {
 	// First get the person's id
-	const id = request.query.id;
+	const id = request.query.externalID;
 
 	// TODO: We should really check here for a valid id before continuing on...
 

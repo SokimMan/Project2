@@ -89,6 +89,7 @@ express()
   		{
       		const client = await pool.connect();
       		const result = await client.query(command);
+      		console.log("Found result: " + JSON.stringify(result.rows));
       		//return result;
       		client.release();
     	}	 	

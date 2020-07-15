@@ -36,9 +36,10 @@ express()
     }
   })
 
+  /*
   .get('/data', async (request, response) =>
   {
-  	/*
+  	
   	let person = request.query.person;
   	// If there is a person, and the raw JSON data has such a key, return the
   	// associated data.
@@ -52,7 +53,7 @@ express()
 
   	// End the response.
   	response.end();
-  	*/
+  	
 
   	 try {
       const client = await pool.connect();
@@ -66,6 +67,8 @@ express()
     response.end();
 
   })
+  */
+  
 
   .get('/newUser', createNewUser)
   .get('/cool', (req, res) => res.send(cool()))
@@ -92,8 +95,27 @@ express()
       		res.send("Error " + err);
     	}
 
+    	return result;
+
   	}
 
+  	async function viewDatabase()
+  	{
+  		try 
+  		{
+  			command = 'SELECT * FROM sf;';
+  			const client = await pool.connect();
+  			const result = await client.query('SELECT * FROM sf');
+      		const results = { 'results': (result) ? result.rows : null};
+      		client.release();
+      	}
+      	catch (err) 
+    	{
+      		console.error(err);
+      		res.send("Error " + err);
+    	}
+
+  	}
 
     // Connects with our new user form submission
     function createNewUser(request, response) {
@@ -104,6 +126,7 @@ express()
 	const city = request.query.city;
 
 	insertResult = insertToDatabase(externalID, firstName, lastName, city);
+	selectResult = viewDatabase();
 
 
     // Set up a JSON object of the values we want to pass along to the EJS result page

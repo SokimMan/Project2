@@ -36,7 +36,7 @@ express()
     }
   })
 
-  .get('/data', function(request, response)
+  .get('/data', function(request, response) =>
   {
   	let person = request.query.person;
   	// If there is a person, and the raw JSON data has such a key, return the
@@ -51,7 +51,7 @@ express()
 
   	// End the response.
   	response.end();
-  }
+  })
 
   .get('/newUser', createNewUser)
   .get('/cool', (req, res) => res.send(cool()))

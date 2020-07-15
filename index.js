@@ -40,6 +40,7 @@ express()
   .get('/cool', (req, res) => res.send(cool()))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
+/*
   	async function insertToDatabase(externalID, firstName, lastName, city) 
   	{
   		// 'INSERT INTO sf VALUES ('externalID', 'firstName', 'lastName', 'city')
@@ -59,6 +60,7 @@ express()
     	}
 
   	}
+  	*/
 
     // Connects with our new user form submission
     function createNewUser(request, response) {
@@ -68,7 +70,8 @@ express()
 	const lastName = request.query.lastName;
 	const city = request.query.city;
 
-	insertResult = insertToDatabase(externalID, firstName, lastName, city);
+	//insertResult = insertToDatabase(externalID, firstName, lastName, city);
+	insertResult = 'test';
 
     // Set up a JSON object of the values we want to pass along to the EJS result page
 	const params = {insertResult: insertResult, externalID: externalID, firstName: firstName, lastName: lastName, city: city};

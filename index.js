@@ -87,6 +87,7 @@ express()
   		{
       		const client = await pool.connect();
       		const result = await client.query(command);
+      		return result;
       		client.release();
     	}	 	
     	catch (err) 

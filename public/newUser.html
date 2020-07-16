@@ -6,13 +6,36 @@
 
 <p>Please enter the info of the Contact to be entered into the Salesforce Database</p>
 
-<form action="/newUser" method="get">
+<form id= "newUser" action="/newUser" method="get">
   <input type="text" name="externalID">
   <input type="text" name="firstName">
   <input type="text" name="lastName">
   <input type="text" name="city">
   <input type="submit" value="Enter">
 </form>
+
+<script type="text/javascript">
+    var frm = $('#newUser');
+
+    frm.submit(function (e) {
+
+        e.preventDefault();
+
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+                console.log('Submission was successful.');
+                console.log(data);
+            },
+            error: function (data) {
+                console.log('An error occurred.');
+                console.log(data);
+            },
+        });
+    });
+</script>
 
 </body>
 </html>

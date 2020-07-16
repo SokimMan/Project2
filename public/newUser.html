@@ -6,7 +6,7 @@
 
 <p>Please enter the info of the Contact to be entered into the Salesforce Database</p>
 
-<form id= "newUser" action="/newUser" method="post">
+<form id= "newUser" action="/newUser" method="get">
   <input type="text" name="externalID">
   <input type="text" name="firstName">
   <input type="text" name="lastName">
@@ -22,8 +22,8 @@
         e.preventDefault();
 
         $.ajax({
-            type: frm.attr('method'),
-            url: frm.attr('action'),
+            type: frm.attr('get'),
+            url: frm.attr('/newUser'),
             data: frm.serialize(),
             success: function (data) {
                 console.log('Submission was successful.');

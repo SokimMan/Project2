@@ -69,8 +69,10 @@ express()
 
   })
   */
+  //.get('/searchUserPage', getPersonPage)
   .get('/searchUser', getPerson)
 
+  //.get('/newUserPage', createNewUserPage)
   .get('/newUser', createNewUser)
 
   .get('/cool', (req, res) => res.send(cool()))
@@ -123,6 +125,8 @@ express()
 
   	}
 
+//createNewUserPage() {}
+
     // Connects with our new user form submission
     function createNewUser(request, response) {
 
@@ -140,7 +144,7 @@ express()
 
 	// Render the response, using the EJS page "result.ejs" in the pages directory
 	response.render('pages/result', params);
-    }
+  }
 
 // This function handles requests to the /getPerson endpoint
 // it expects to have an id on the query string, such as: http://localhost:5000/getPerson?id=1

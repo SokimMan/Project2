@@ -166,9 +166,10 @@ function getPerson(request, response)
 			response.status(500).json({success: false, data: error});
 		} else {
 			const person = result.rows;//[0];
-			response.status(200).json(person);
+			//response.status(200).json(person);
       //const params = {firstname: person.firstname}
-      //response.render('pages/searchResult', params);
+      console.log("logger: " + person);
+      response.render('pages/search', person);
 		}
 	});
 }

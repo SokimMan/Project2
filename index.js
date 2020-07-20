@@ -198,7 +198,7 @@ function getPerson(request, response)
     }
 
     // Log this to the console for debugging purposes.
-    console.log("Found result: " + JSON.stringify(result.rows.external_id));
+    console.log("Found result: " + JSON.stringify(result.rows[1]);
     response.render('pages/search', result.rows);
 
   });

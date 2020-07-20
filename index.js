@@ -165,7 +165,7 @@ function getPerson(request, response)
 		if (error || result == null) { // result.length != 1) {
 			response.status(500).json({success: false, data: error});
 		} else {
-			const person = result.row;//[0];
+			const person = result.rows;//[0];
 			response.status(200).json(person);
       //const params = {firstname: person.firstname}
       //response.render('pages/searchResult', params);
@@ -198,7 +198,7 @@ function getPersonFromDb(id, callback) {
 		}
 
 		// Log this to the console for debugging purposes.
-		console.log("Found result: " + JSON.stringify(result.row));
+		console.log("Found result: " + JSON.stringify(result.rows));
 
 
 		// When someone else called this function, they supplied the function

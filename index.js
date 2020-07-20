@@ -201,6 +201,7 @@ function getPerson(request, response)
     console.log("Found result: " + JSON.stringify(result.rows));
     response.render('pages/result', result.rows);
 
+  });
 }
 
 // This function gets a person from the DB.

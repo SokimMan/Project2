@@ -22,6 +22,7 @@ express()
   .set('view engine', 'ejs')
 
   .get('/', (req, res) => res.render('pages/index'))
+  .get('/back', (req, res) => res.render('searchUser.html'))
   
   // Dev Path to see DB post
   .get('/db', async (req, res) => {
@@ -74,7 +75,7 @@ express()
 
   //.get('/newUserPage', createNewUserPage)
   .get('/newUser', createNewUser)
-  .get('/back', 'searchUser.html')
+  //.get('/back', 'searchUser.html')
 
   .get('/cool', (req, res) => res.send(cool()))
 

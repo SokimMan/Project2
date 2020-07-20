@@ -128,9 +128,9 @@ express()
 //createNewUserPage() {}
 
     // Connects with our new user form submission
-    function createNewUser(request, response) {
+  function createNewUser(request, response) {
 
-    const externalID = request.query.externalID;
+  const externalID = request.query.externalID;
 	const firstName = request.query.firstName;
 	const lastName = request.query.lastName;
 	const city = request.query.city;
@@ -148,23 +148,26 @@ express()
 
 // This function handles requests to the /getPerson endpoint
 // it expects to have an id on the query string, such as: http://localhost:5000/getPerson?id=1
-function getPerson(request, response) {
+function getPerson(request, response) 
+{
 	// First get the person's id
 	const id = request.query.externalID;
 
 	// TODO: We should really check here for a valid id before continuing on...
 
 	// use a helper function to query the DB, and provide a callback for when it's done
-	getPersonFromDb(id, function(error, result) {
+	getPersonFromDb(id, function(error, result) 
+  {
 		// This is the callback function that will be called when the DB is done.
 		// The job here is just to send it back.
-
+    //const params = {externalID: externalID, firstName: firstName, lastName: lastName, city: city}
 		// Make sure we got a row with the person, then prepare JSON to send back
 		if (error || result == null) { // result.length != 1) {
 			response.status(500).json({success: false, data: error});
 		} else {
 			const person = result;//[0];
-			response.status(200).json(person);
+			//response.status(200).json(person);
+      response.render('pages/searchResult', person);
 		}
 	});
 }

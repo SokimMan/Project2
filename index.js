@@ -22,7 +22,7 @@ express()
   .set('view engine', 'ejs')
 
   .get('/', (req, res) => res.render('pages/index'))
-  .get('/back', (req, res) => res.render('searchUser.html'))
+  .get('/back', (req, res) => res.render('public/searchUser'))
   
   // Dev Path to see DB post
   .get('/db', async (req, res) => {

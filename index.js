@@ -168,7 +168,7 @@ function getPerson(request, response)
 			const person = result.rows;//[0];
 			//response.status(200).json(person);
       //const params = {firstname: person.firstname}
-      console.log("logger: " + person);
+      console.log("logger: " + JSON.stringify(person));
       response.render('pages/search', person);
 		}
 	});

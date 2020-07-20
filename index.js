@@ -74,6 +74,7 @@ express()
 
   //.get('/newUserPage', createNewUserPage)
   .get('/newUser', createNewUser)
+  .get('/back', 'searchUser.html')
 
   .get('/cool', (req, res) => res.send(cool()))
 

@@ -18,11 +18,12 @@ const pool = new Pool({connectionString: connectionString});
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
+  .get('/back', (req, res) => res.render('searchUser'))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
 
   .get('/', (req, res) => res.render('pages/index'))
-  .get('/back', (req, res) => res.render('public/searchUser'))
+  //.get('/back', (req, res) => res.render('searchUser'))
   
   // Dev Path to see DB post
   .get('/db', async (req, res) => {

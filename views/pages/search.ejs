@@ -4,14 +4,12 @@
 	<title>Insert</title>
 </head>
 <body>
-	<button class="tablink" onclick="../../public/newUser.html" id="defaultOpen">New User</button>
-    <button class="tablink" onclick="../../public/searchUser.html">Search a user</button>
 
 	<h1>Contact Found</h1>
 	<p>New contact: ID - <%= external_id%>, First Name - <%= firstname%>, Last Name - <%= lastname%>, City - <%= city%></p><br>
 
 	<form id= "back" action="/searchUser.html" method="get">
-		<input type="submit" value="back">
+		<input type="submit" value="Go Back">
 	</form>
 </body>
 </html>

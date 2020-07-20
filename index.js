@@ -167,7 +167,7 @@ function getPerson(request, response)
 		} else {
 			const person = result;//[0];
 			//response.status(200).json(person);
-      response.render('pages/searchResult', person);
+      response.render('pages/searchResult', result.rows);
 		}
 	});
 }

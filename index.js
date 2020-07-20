@@ -199,7 +199,7 @@ function getPerson(request, response)
 
     // Log this to the console for debugging purposes.
     console.log("Found result: " + JSON.stringify(result.rows[0]));
-    response.render('pages/search', result.rows);
+    response.render('pages/search', result.rows[0]);
 
   });
 }

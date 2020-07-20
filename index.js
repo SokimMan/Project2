@@ -141,7 +141,7 @@ express()
 
     // Set up a JSON object of the values we want to pass along to the EJS result page
 	const params = {insertResult: insertResult, externalID: externalID, firstName: firstName, lastName: lastName, city: city};
-
+  console.log("Found result: " + JSON.stringify(params.rows));
 	// Render the response, using the EJS page "result.ejs" in the pages directory
 	response.render('pages/result', params);
   }

@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Insert</title>
-	
+<link rel="stylesheet" href="stylesheets/styles.css">
 </head>
 <body>
 	
+	<div class="topnav">
+  	<a href="searchUser.html">Search for a Contact</a>
+  	<a href="/db">View All Contacts</a>
+ 	<a href="newUser.html">Create New Contact</a>
+	</div>
+
 	<h1>Contact Inserted</h1>
 	<p>New contact: ID - <%= externalID%>, First Name - <%= firstName%>, Last Name - <%= lastName%>, City - <%= city%></p><br>
-	
+
 	<form id= "back" action="/newUser.html" method="get">
 		<input type="submit" value="Go Back">
+	</form>
 
 </body>
 </html>

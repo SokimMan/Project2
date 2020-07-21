@@ -9,15 +9,18 @@
 <% include ../partials/nav.ejs %>
 
 <div class="container">
-<h2>Database Results</h2>
+<h2>Contacts Results</h2>
 
 <ul>
     <% results.forEach(function(r) { %>
         <li><%= r.external_id %> - <%= r.firstname %></li>
     <% }); %>
 </ul>
-
 </div>
+
+<form id= "back" action="/home.html" method="get">
+	<input type="submit" value="Go Back">
+
 
 </body>
 </html>

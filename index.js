@@ -32,7 +32,7 @@ express()
       const result = await client.query('SELECT * FROM sf');
       const results = { 'results': (result) ? result.rows : null};
       console.log(JSON.stringify(results));
-      console.log(JSON.stringify(results[0]));
+      console.log(JSON.stringify(results.rows[0]));
       res.render('pages/db', results );
       client.release();
     } catch (err) {

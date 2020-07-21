@@ -104,12 +104,12 @@ express()
       const result = await client.query(command);
       //const results = { 'results': (result) ? result.rows : null};
       //res.render('pages/db', result);
+      response.render('pages/db', result);
       client.release();
     } catch (err) {
       console.error(err);
       response.send("Error " + err);
     }
-    response.render('pages/db', result);
   }
  
   async function viewDatabase()

@@ -95,7 +95,7 @@ express()
   function deleteContact(request, response) {
 
     const external_id = request.query.external_id;
-    console.log("To Delete: " + JSON.stringify(params));
+    console.log("To Delete: " + JSON.stringify(external_id));
     response.render('home.html');
     
   }

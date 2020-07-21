@@ -128,7 +128,7 @@ express()
       console.error(err);
       response.send("Error " + err);
     }
-
+    getDatabase(request, response);
 
   }
  

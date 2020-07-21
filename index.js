@@ -70,9 +70,7 @@ express()
       		console.error(err);
       		res.send("Error " + err);
     	}
-
     	//return result;
-
   }
 
   // Connects with our new user form submission

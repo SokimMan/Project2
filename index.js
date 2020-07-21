@@ -43,7 +43,7 @@ express()
 
   .get('/searchUser', getPerson)
 
-  .get('/delete', deleteContact)
+  .get('/deleteUser', deleteContact)
 
   .get('/newUser', createNewUser)
 
@@ -90,11 +90,22 @@ express()
     response.render('pages/db', params);
   }
 
-  function deleteContact(request, response) {
+  async function deleteContact(request, response) {
 
     const external_id = request.query.external_id;
     console.log("To Delete: " + JSON.stringify(external_id));
     response.render('home.html');
+
+    try {
+      const client = await pool.connect();
+      const result = await client.query('DELETE FROM sf WHERE external_id = ' + external_id);
+      const results = { 'results': (result) ? result.rows : null};
+      res.render('pages/db', results );
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
     
   }
  

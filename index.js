@@ -107,9 +107,9 @@ express()
       client.release();
     } catch (err) {
       console.error(err);
-      res.send("Error " + err);
+      response.send("Error " + err);
     }
-    res.render('pages/db', result);
+    response.render('pages/db', result);
   }
  
   async function viewDatabase()

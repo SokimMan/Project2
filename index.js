@@ -198,5 +198,3 @@ express()
         res.send("Error " + err);
     }
   }
-
-  async function

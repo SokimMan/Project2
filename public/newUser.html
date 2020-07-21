@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="stylesheets/styles.css">
 </head>
 <body>
 
+<div class="topnav">
+  <a class="active" href="home.html">Home</a>
+  <a href="searchUser.html">Search for a Contact</a>
+  <a href="/db">View All Contacts</a>
+  <a href="newUser.html">Create New Contact</a>
+</div>
 
 <h2>Salesforce New Contact GUI</h2>
 
 <p>Please enter the info of the Contact to be entered into the Salesforce Database</p>
 
 <form id= "newUser" action="/newUser" method="get">
+  ID:
   <input type="text" name="externalID">
+  First Name:
   <input type="text" name="firstName">
+  Last Name:
   <input type="text" name="lastName">
+  City:
   <input type="text" name="city">
   <input type="submit" value="Enter">
 </form>

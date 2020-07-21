@@ -140,7 +140,7 @@ express()
     console.log("Found result: " + JSON.stringify(params));
 
   	// Render the response, using the EJS page "result.ejs" in the pages directory
-  	response.render('pages/result', params);
+  	response.render('pages/new', params);
 
   }
 

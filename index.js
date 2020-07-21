@@ -94,10 +94,11 @@ express()
 
     const external_id = request.query.externalID;
     console.log("To Delete: " + JSON.stringify(external_id));
+    console.log("DELETE FROM sf WHERE external_ID = $1::text");
 
     try {
       const client = await pool.connect();
-      const result = await client.query('DELETE FROM sf WHERE external_id = ' + external_id);
+      const result = await client.query('DELETE FROM sf WHERE external_id = ' + JSON.stringify(external_id));
       //const results = { 'results': (result) ? result.rows : null};
       //res.render('pages/db', result);
       client.release();

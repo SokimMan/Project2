@@ -43,6 +43,8 @@ express()
 
   .get('/searchUser', getPerson)
 
+  .get('/delete', deleteContact)
+
   .get('/newUser', createNewUser)
 
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
@@ -73,7 +75,7 @@ express()
 
   }
 
-    // Connects with our new user form submission
+  // Connects with our new user form submission
   function createNewUser(request, response) {
 
     const externalID = request.query.externalID;
@@ -88,6 +90,14 @@ express()
     console.log("Found result: " + JSON.stringify(params));
     // Render the response, using the EJS page "result.ejs" in the pages directory
     response.render('pages/result', params);
+  }
+
+  function deleteContact(request, response) {
+
+    const external_id = request.query.external_id;
+    console.log("To Delete: " + JSON.stringify(params));
+    response.render('home.html');
+    
   }
  
   async function viewDatabase()
@@ -168,7 +178,6 @@ express()
     });
   }
 
-
   async function getAllContacts(request, response) 
   {
     const sql = "SELECT * FROM sf";
@@ -189,3 +198,5 @@ express()
         res.send("Error " + err);
     }
   }
+
+  async function

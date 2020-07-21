@@ -6,9 +6,14 @@
 
 <body>
 <style>
-table, th, td {
+table, th {
   border: 1px solid black;
-  border-spacing: 10px;
+  padding: 10px;
+}
+
+td {
+  border: 1px solid black;
+  padding: 10px;
 }
 </style>
 <% include ../partials/nav.ejs %>
@@ -16,13 +21,13 @@ table, th, td {
 <div class="container">
 <h2>Contacts Results</h2>
 
-<table cellpadding="100">
+<table>
   <tr>
-    <th>ID</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>City</th>
-    <th>Delete</th>
+    <th> ID</th>
+    <th> First Name</th>
+    <th> Last Name</th>
+    <th> City</th>
+    <th> Delete</th>
   </tr>
 
 <% results.forEach(function(r) { %>
@@ -31,6 +36,11 @@ table, th, td {
     <td><%= r.firstname %></td>
     <td><%= r.lastname %></td>
     <td><%= r.city %></td>
+    <td>
+    	<form id= "back" action="/delete" method="get">
+    		<input type="hidden" name="external_id" value="<%= r.external_id %>">
+			<input type="submit" value="Delete">
+    </td>
   	</tr>
 <% }); %>
 

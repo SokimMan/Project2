@@ -92,7 +92,7 @@ express()
 
   async function deleteContact(request, response) {
 
-    const external_id = request.query.external_id;
+    const external_id = request.query.externalID;
     console.log("To Delete: " + JSON.stringify(external_id));
     response.render('home.html');
 

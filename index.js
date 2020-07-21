@@ -169,7 +169,7 @@ express()
   }
 
 
-  function getAllContacts(request, response) 
+  async function getAllContacts(request, response) 
   {
     const sql = "SELECT * FROM sf";
 

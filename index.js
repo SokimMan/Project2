@@ -99,13 +99,13 @@ express()
       const client = await pool.connect();
       const result = await client.query('DELETE FROM sf WHERE external_id = ' + external_id);
       //const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/db', result);
+      //res.render('pages/db', result);
       client.release();
     } catch (err) {
       console.error(err);
       res.send("Error " + err);
     }
-    
+    res.render('pages/db', result);
   }
  
   async function viewDatabase()

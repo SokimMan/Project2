@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <% include ../partials/header.ejs %>
 </head>
 
 <body>
@@ -16,9 +15,9 @@ td {
   padding: 10px;
 }
 </style>
-<% include ../partials/nav.ejs %>
 
-<div class="container">
+
+
 <h2>Contacts Results</h2>
 
 <table>
@@ -27,7 +26,6 @@ td {
     <th> First Name</th>
     <th> Last Name</th>
     <th> City</th>
-    <th> Delete</th>
   </tr>
 
 <% results.forEach(function(r) { %>
@@ -36,11 +34,6 @@ td {
     <td><%= r.firstname %></td>
     <td><%= r.lastname %></td>
     <td><%= r.city %></td>
-    <td>
-    	<form id= "back" action="/delete" method="get">
-    		<input type="hidden" name="external_id" value="<%= r.external_id %>">
-			<input type="submit" value="Delete">
-    </td>
   	</tr>
 <% }); %>
 
@@ -48,10 +41,6 @@ td {
 <br>
 <form id= "back" action="/home.html" method="get">
 	<input type="submit" value="Go Back">
-
-
-
-</div>
 
 
 

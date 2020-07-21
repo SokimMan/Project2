@@ -26,6 +26,7 @@ express()
   //.get('/back', (req, res) => res.render('searchUser'))
   .get('/back', (req, res) => res.render('../../public/searchUser'))
   // Dev Path to see DB post
+  /*
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect();
@@ -40,6 +41,8 @@ express()
       res.send("Error " + err);
     }
   })
+  */
+  .get('/db', getDatabase)
 
   .get('/searchUser', getPerson)
 
@@ -49,6 +52,21 @@ express()
 
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
+  async function getDatabase (req, res)  
+  {
+    try {
+      const client = await pool.connect();
+      const result = await client.query('SELECT * FROM sf');
+      const results = { 'results': (result) ? result.rows : null};
+      console.log("The complete set of objects: " + JSON.stringify(results));
+      console.log("The first object: " + JSON.stringify(result.rows[0]));
+      res.render('pages/db', results );
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  }
 
   async function insertToDatabase(externalID, firstName, lastName, city) 
   {
@@ -104,12 +122,14 @@ express()
       const result = await client.query(command);
       //const results = { 'results': (result) ? result.rows : null};
       //res.render('pages/db', result);
-      response.render('pages/db', result);
+      //response.render('pages/db', result);
       client.release();
     } catch (err) {
       console.error(err);
       response.send("Error " + err);
     }
+
+
   }
  
   async function viewDatabase()

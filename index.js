@@ -31,8 +31,8 @@ express()
       const client = await pool.connect();
       const result = await client.query('SELECT * FROM sf');
       const results = { 'results': (result) ? result.rows : null};
-      console.log(JSON.stringify("The complete set of objects: " + results));
-      console.log(JSON.stringify("The first object: " +result.rows[0]));
+      console.log("The complete set of objects: " + JSON.stringify(results));
+      console.log("The first object: " + JSON.stringify(result.rows[0]));
       res.render('pages/db', results );
       client.release();
     } catch (err) {

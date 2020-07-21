@@ -5,21 +5,45 @@
 </head>
 
 <body>
-
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-spacing: 10px;
+}
+</style>
 <% include ../partials/nav.ejs %>
 
 <div class="container">
 <h2>Contacts Results</h2>
 
-<ul>
-    <% results.forEach(function(r) { %>
-        <li><%= r.external_id %> - <%= r.firstname %></li>
-    <% }); %>
-</ul>
-</div>
+<table cellpadding="100">
+  <tr>
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>City</th>
+    <th>Delete</th>
+  </tr>
 
+<% results.forEach(function(r) { %>
+	<tr>
+    <td><%= r.external_id %></td>
+    <td><%= r.firstname %></td>
+    <td><%= r.lastname %></td>
+    <td><%= r.city %></td>
+  	</tr>
+<% }); %>
+
+</table>
+<br>
 <form id= "back" action="/home.html" method="get">
 	<input type="submit" value="Go Back">
+
+
+
+</div>
+
+
 
 
 </body>

@@ -95,7 +95,7 @@ express()
     const external_id = request.query.externalID;
     console.log("To Delete: " + JSON.stringify(external_id));
     console.log("DELETE FROM sf WHERE external_ID = $1::text");
-    const command = "DELETE FROM sf WHERE external_id = " + external_id + ";";
+    const command = "DELETE FROM sf WHERE external_ID = " + external_id + ";";
     console.log("Command: " + command);
 
 
